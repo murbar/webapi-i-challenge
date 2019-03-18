@@ -47,7 +47,25 @@ server.post('/api/users', (req, res) => {
 });
 
 server.put('/api/users/:id', (req, res) => {
-  res.send('Hello world');
+  const userId = req.params.id;
+  const { body: user } = req;
+  if (!user.name || !user.bio) {
+    res.status(400).json({ errorMessage: 'Please provide name and bio for the user.' });
+  } else {
+    db.update(userId, user)
+      .then(updatedCount => {
+        if (!updatedCount) {
+          res.status(400).json({ message: 'The user with the specified ID does not exist.' });
+        } else {
+          db.findById(userId).then(user => {
+            res.json(user);
+          });
+        }
+      })
+      .catch(error => {
+        res.status(500).json({ error: 'The user information could not be modified.' });
+      });
+  }
 });
 
 server.delete('/api/users/:id', (req, res) => {
