@@ -39,14 +39,19 @@ const useUsers = () => {
   // });
 
   const addUser = requestWrapper(async user => {
-    const { data } = axios.post(endpoint, user);
+    const { data } = await axios.post(endpoint, user);
     user.id = data.id;
+    console.log(data);
     setUsers(prev => [...prev, user]);
   });
 
   const updateUser = requestWrapper(async user => {});
 
-  const removeUser = requestWrapper(async userId => {});
+  const removeUser = requestWrapper(async userId => {
+    const { data } = await axios.delete(userUrl(userId));
+    console.log(data);
+    setUsers(prev => prev.filter(u => u.id !== userId));
+  });
 
   return {
     users,
