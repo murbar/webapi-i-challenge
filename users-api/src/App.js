@@ -5,7 +5,7 @@ import './App.css';
 import UserForm from './components/UserForm';
 
 const App = () => {
-  const { users, isLoading, error, addUser, updateUser, removeUser } = useUsers();
+  const { users, isLoading, error, addUser, removeUser } = useUsers();
 
   return (
     <div className="App">

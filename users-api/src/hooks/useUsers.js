@@ -45,7 +45,7 @@ const useUsers = () => {
     setUsers(prev => [...prev, user]);
   });
 
-  const updateUser = requestWrapper(async user => {});
+  // const updateUser = requestWrapper(async user => {});
 
   const removeUser = requestWrapper(async userId => {
     const { data } = await axios.delete(userUrl(userId));
@@ -60,7 +60,7 @@ const useUsers = () => {
     getAllUsers,
     // get,
     addUser,
-    updateUser,
+    // updateUser,
     removeUser
   };
 };
