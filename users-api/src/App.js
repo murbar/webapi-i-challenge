@@ -1,7 +1,8 @@
 import React from 'react';
-import useUsers from './useUsers';
-import UserList from './UserList';
+import useUsers from './hooks/useUsers';
+import UserList from './components/UserList';
 import './App.css';
+import UserForm from './components/UserForm';
 
 const App = () => {
   const { users, isLoading, error, addUser, updateUser, removeUser } = useUsers();
@@ -15,7 +16,8 @@ const App = () => {
         </div>
       )}
       {error && <div className="error">{error}</div>}
-      {users.length ? <UserList users={users} /> : <div>No users</div>}
+      <UserForm handleAdd={addUser} />
+      {users.length ? <UserList users={users} handleDelete={removeUser} /> : <div>No users</div>}
     </div>
   );
 };
