@@ -5,7 +5,7 @@ const db = require('./data/db');
 const port = 4000;
 
 server.get('/api/users', (req, res) => {
-  db.find
+  db.find()
     .then(users => {
       res.json(users);
     })
