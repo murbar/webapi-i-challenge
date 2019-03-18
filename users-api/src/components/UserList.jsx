@@ -2,16 +2,17 @@ import React from 'react';
 
 const UserList = ({ users, handleDelete }) => {
   return (
-    <ul>
+    <div className="users-list">
       {users.map(u => (
-        <li key={u.id}>
-          {u.name}, {u.bio}{' '}
+        <div className="users-list-item" key={u.id}>
+          {u.name}
+          <div className="bio">{u.bio}</div>
           <button className="delete" onClick={() => handleDelete(u.id)}>
             X
           </button>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 };
 
