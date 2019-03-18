@@ -5,7 +5,10 @@ const UserList = ({ users, handleDelete }) => {
     <ul>
       {users.map(u => (
         <li key={u.id}>
-          {u.name}, {u.bio} <button onClick={() => handleDelete(u.id)}>X</button>
+          {u.name}, {u.bio}{' '}
+          <button className="delete" onClick={() => handleDelete(u.id)}>
+            X
+          </button>
         </li>
       ))}
     </ul>
