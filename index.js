@@ -23,7 +23,7 @@ server.get('/api/users/:id', (req, res) => {
   db.findById(userId)
     .then(user => {
       if (!user) {
-        res.status(404).json({ message: 'The user with the specified ID does not exist.' });
+        res.status(404).json({ error: 'The user with the specified ID does not exist.' });
       } else {
         res.json(user);
       }
@@ -36,7 +36,7 @@ server.get('/api/users/:id', (req, res) => {
 server.post('/api/users', (req, res) => {
   const { body: user } = req;
   if (!user.name || !user.bio) {
-    res.status(400).json({ errorMessage: 'Please provide name and bio for the user.' });
+    res.status(400).json({ error: 'Please provide name and bio for the user.' });
   } else {
     db.insert(user)
       .then(newUser => {
@@ -52,12 +52,12 @@ server.put('/api/users/:id', (req, res) => {
   const userId = req.params.id;
   const { body: user } = req;
   if (!user.name || !user.bio) {
-    res.status(400).json({ errorMessage: 'Please provide name and bio for the user.' });
+    res.status(400).json({ error: 'Please provide name and bio for the user.' });
   } else {
     db.update(userId, user)
       .then(updatedCount => {
         if (!updatedCount) {
-          res.status(400).json({ message: 'The user with the specified ID does not exist.' });
+          res.status(400).json({ error: 'The user with the specified ID does not exist.' });
         } else {
           db.findById(userId).then(user => {
             res.json(user);
@@ -75,7 +75,7 @@ server.delete('/api/users/:id', (req, res) => {
   db.remove(userId)
     .then(deletedCount => {
       if (!deletedCount) {
-        res.status(404).json({ message: 'The user with the specified ID does not exist.' });
+        res.status(404).json({ error: 'The user with the specified ID does not exist.' });
       } else {
         res.json({ message: `The user with ID ${userId} was deleted.` });
       }

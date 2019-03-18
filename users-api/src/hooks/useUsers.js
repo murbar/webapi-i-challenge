@@ -18,7 +18,7 @@ const useUsers = () => {
       setIsLoading(false);
     } catch (error) {
       console.dir(error);
-      setError(error.message);
+      setError(error.response.data.error);
       setIsLoading(false);
     }
   };
