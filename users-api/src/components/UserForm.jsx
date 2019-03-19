@@ -1,12 +1,8 @@
 import React from 'react';
 import useForm from '../hooks/useForm';
 
-const UserForm = ({ handleAdd }) => {
-  const addUser = () => {
-    handleAdd(values);
-  };
-
-  const { values, handleChange, handleSubmit } = useForm(addUser);
+const UserForm = ({ onSubmit }) => {
+  const { values, handleChange, handleSubmit } = useForm(onSubmit);
 
   return (
     <form onSubmit={handleSubmit}>
