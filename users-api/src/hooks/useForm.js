@@ -8,14 +8,13 @@ const useForm = (onSubmit, initialValues) => {
   }, [initialValues]);
 
   const handleChange = e => {
-    e.persist();
     const { name, value } = e.target;
     setValues(prevValues => ({ ...prevValues, [name]: value }));
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit();
+    onSubmit(values);
     setValues({});
   };
 
