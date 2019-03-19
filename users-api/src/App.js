@@ -16,7 +16,7 @@ const App = () => {
         </div>
       )}
       {error && <div className="error">{error}</div>}
-      <UserForm handleAdd={addUser} />
+      <UserForm onSubmit={addUser} />
       {users.length ? <UserList users={users} handleDelete={removeUser} /> : <div>No users</div>}
     </div>
   );
